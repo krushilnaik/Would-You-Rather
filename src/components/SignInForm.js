@@ -26,6 +26,7 @@ function SignInForm() {
 				<h1>Welcome to the Would You Rather App!</h1>
 				<h2>Please sign in to continue</h2>
 			</div>
+
 			<form>
 				<img src="assets/images/react-redux.jpeg" alt="react redux logo" />
 				<label htmlFor="user">Sign in</label>
