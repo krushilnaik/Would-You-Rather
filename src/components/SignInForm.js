@@ -5,11 +5,33 @@ import './scss/SignInForm.scss';
 function SignInForm() {
 	let [user, setUser] = useState('');
 
-	const handleClick = () => {
+	/**
+	 * attempt to log in with the selected user
+	 * @param {React.MouseEvent<HTMLButtonElement>} event 
+	 */
+	const handleFormSubmit = (event) => {
+		event.preventDefault();
 		if (!user) {
 			alert('Please select a user');
 		} else {
 			// log in as selected user
+		}
+	};
+
+	/**
+	 * makeshift select element's driver function
+	 * @param {React.MouseEvent<HTMLButtonElement|HTMLDivElement>} event 
+	 */
+	const handleSelect = (event) => {
+		event.preventDefault();
+
+		const target = event.currentTarget;
+
+		if(target instanceof HTMLButtonElement) {
+			setUser('Krushil Naik');
+		} else {
+			const newUser = target.querySelector('span').innerText;
+			setUser(newUser);
 		}
 	};
 
@@ -32,26 +54,28 @@ function SignInForm() {
 						data-toggle='dropdown'
 						aria-haspopup='true'
 						aria-expanded='false'
+						onClick={handleSelect}
+						style={ {color: user ? 'black' : '#999999'} }
 					>
-						Select user:
+						{user || 'Select user:'}
 					</button>
 					<div className='dropdown-menu' aria-labelledby='user-select'>
-						<div className='dropdown-item'>
+						<div className='dropdown-item' onClick={handleSelect}>
 							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
 							<span className='username'>Krushil Naik</span>
 						</div>
-						<div className='dropdown-item'>
+						<div className='dropdown-item' onClick={handleSelect}>
 							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
 							<span className='username'>Tyler McGinnis</span>
 						</div>
-						<div className='dropdown-item'>
+						<div className='dropdown-item' onClick={handleSelect}>
 							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
 							<span className='username'>Guest</span>
 						</div>
 					</div>
 				</div>
 
-				<button onClick={handleClick} type='submit'>
+				<button onClick={handleFormSubmit} type='submit'>
 					Sign in
 				</button>
 			</form>
