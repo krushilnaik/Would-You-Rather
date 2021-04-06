@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './scss/SignInForm.scss';
 
-import { logInAs } from '../app/store';
+import { logIn } from '../app/store';
 
 function SignInForm() {
 	let [user, setUser] = useState('');
@@ -17,7 +17,7 @@ function SignInForm() {
 			alert('Please select a user');
 		} else {
 			// log in as selected user
-			logInAs(user);
+			logIn(user);
 		}
 	};
 

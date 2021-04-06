@@ -32,9 +32,9 @@ export const store = configureStore({
 	middleware: [thunk]
 });
 
-export const { logInAs, logOut } = bindActionCreators(
+export const { logIn, logOut } = bindActionCreators(
 	{
-		logInAs: user => ({type: LOG_IN, user}),
+		logIn: user => ({type: LOG_IN, user}),
 		logOut: () => ({type: LOG_OUT})
 	},
 	store.dispatch
