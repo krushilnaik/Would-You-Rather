@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import './scss/SignInForm.scss';
 
+import { logInAs } from '../app/store';
+
 function SignInForm() {
 	let [user, setUser] = useState('');
 
@@ -15,6 +17,7 @@ function SignInForm() {
 			alert('Please select a user');
 		} else {
 			// log in as selected user
+			logInAs(user);
 		}
 	};
 
@@ -27,8 +30,8 @@ function SignInForm() {
 
 		const target = event.currentTarget;
 
-		if(target instanceof HTMLButtonElement) {
-			setUser('Krushil Naik');
+		if (target instanceof HTMLButtonElement) {
+			target.innerText = user || 'Krushil Naik';
 		} else {
 			const newUser = target.querySelector('span').innerText;
 			setUser(newUser);

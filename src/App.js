@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import './App.scss';
 
@@ -7,7 +8,19 @@ import SignInForm from './components/SignInForm';
 import LeaderBoard from './components/LeaderBoard';
 import NewQuestion from './components/NewQuestion';
 
-function App() {
+import { logOut } from './app/store';
+
+/**
+ * markup for the main app
+ * @param { {user: string} } props 
+ */
+function App(props) {
+	const { user } = props;
+
+	const handleClick = () => {
+		logOut();
+	}
+
 	return (
 		<div id='app'>
 			<nav>
@@ -23,15 +36,26 @@ function App() {
 					</li>
 				</ul>
 
-				<div id='user-info'></div>
+				{
+					user && <div id='user-info'>
+						<span>Hello, {user}</span>
+						<img src="assets/images/react-redux.jpeg" alt="user avatar" />
+						<button onClick={handleClick}>Logout</button>
+					</div>
+				}
 			</nav>
 
-			<Route exact path='/' render={() => <SignInForm />} />
-			<Route exact path='/home' render={() => <Home />} />
+			<Route exact path='/' render={() => user ? <Home /> : <SignInForm />} />
 			<Route exact path='/new_question' render={() => <NewQuestion />} />
 			<Route exact path='/leader_board' render={() => <LeaderBoard />} />
 		</div>
 	);
 }
 
-export default App;
+/**
+ * link Redux store with App's state
+ * @param { {user: string} } state 
+ */
+const mapStateToProps = (state) => ({user: state.user});
+
+export default connect(mapStateToProps)(App);
