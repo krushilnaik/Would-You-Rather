@@ -1,4 +1,7 @@
-import { bindActionCreators, configureStore } from '@reduxjs/toolkit';
+import { bindActionCreators, combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 
 /**
  * @param {string} state - user we're currently logged in as
@@ -15,13 +18,15 @@ const userReducer = (state = '', action) => {
 	}
 };
 
+const rootReducer = combineReducers({
+	user: userReducer
+});
+
+const persistConfig = { key: 'root', storage };
+
 export const store = configureStore({
-	reducer: {
-		user: userReducer
-	},
-	preloadedState: {
-		user: ''
-	}
+	reducer: persistReducer(persistConfig, rootReducer),
+	middleware: [thunk]
 });
 
 export const { logInAs, logOut } = bindActionCreators(
