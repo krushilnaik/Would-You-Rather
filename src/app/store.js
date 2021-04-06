@@ -3,15 +3,18 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
+const LOG_IN = 'LOG_IN';
+const LOG_OUT = 'LOG_OUT';
+
 /**
  * @param {string} state - user we're currently logged in as
  * @param {{type: string, user: string}} action - action
  */
 const userReducer = (state = '', action) => {
 	switch (action.type) {
-		case 'LOG_IN':
+		case LOG_IN:
 			return action.user;
-		case 'LOG_OUT':
+		case LOG_OUT:
 			return '';
 		default:
 			return state;
@@ -31,8 +34,8 @@ export const store = configureStore({
 
 export const { logInAs, logOut } = bindActionCreators(
 	{
-		logInAs: user => ({type: 'LOG_IN', user}),
-		logOut: () => ({type: 'LOG_OUT'})
+		logInAs: user => ({type: LOG_IN, user}),
+		logOut: () => ({type: LOG_OUT})
 	},
 	store.dispatch
 );
