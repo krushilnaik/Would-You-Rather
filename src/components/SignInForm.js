@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 
-import './css/SignInForm.css';
+import './scss/SignInForm.scss';
 
 function SignInForm() {
 	let [user, setUser] = useState('');
-
-	/**
-	 * @param {React.ChangeEvent<HTMLSelectElement>} event 
-	 */
-	const changeSelectedUser = (event) => {
-		setUser(event.target.options[event.target.selectedIndex].value);
-	}
 
 	const handleClick = () => {
 		if (!user) {
@@ -18,26 +11,49 @@ function SignInForm() {
 		} else {
 			// log in as selected user
 		}
-	}
+	};
 
 	return (
-		<div className="sign-in">
-			<div className="header">
+		<div className='sign-in card'>
+			<div className='card-header bg-light'>
 				<h1>Welcome to the Would You Rather App!</h1>
 				<h2>Please sign in to continue</h2>
 			</div>
 
 			<form>
-				<img src="assets/images/react-redux.jpeg" alt="react redux logo" />
-				<label htmlFor="user">Sign in</label>
-				<select defaultValue={user} name="select-user" id="user" onChange={changeSelectedUser}>
-					<option value="" disabled>Select User</option>
-					<option value="krushil_naik">Krushil Naik</option>
-					<option value="tyler_mcginnis">Tyler McGinnis</option>
-					<option value="krushil_naik">Krushil Naik</option>
-				</select>
+				<img src='assets/images/react-redux.jpeg' alt='react redux logo' />
+				<p>Sign in</p>
 
-				<button onClick={handleClick} type="submit">Sign in</button>
+				<div className='dropdown'>
+					<button
+						className='btn dropdown-toggle'
+						type='button'
+						id='user-select'
+						data-toggle='dropdown'
+						aria-haspopup='true'
+						aria-expanded='false'
+					>
+						Select user:
+					</button>
+					<div className='dropdown-menu' aria-labelledby='user-select'>
+						<div className='dropdown-item'>
+							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
+							<span className='username'>Krushil Naik</span>
+						</div>
+						<div className='dropdown-item'>
+							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
+							<span className='username'>Tyler McGinnis</span>
+						</div>
+						<div className='dropdown-item'>
+							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
+							<span className='username'>Guest</span>
+						</div>
+					</div>
+				</div>
+
+				<button onClick={handleClick} type='submit'>
+					Sign in
+				</button>
 			</form>
 		</div>
 	);

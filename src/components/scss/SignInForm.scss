@@ -1,0 +1,97 @@
+.sign-in {
+	width: 35%;
+	min-width: 500px;
+	margin: auto;
+
+	.card-header {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		padding: 2%;
+
+		> h1 {
+			font-size: larger;
+			font-weight: bold;
+		}
+
+		> h2 {
+			font-size: medium;
+		}
+	}
+
+	form {
+		display: grid;
+		gap: 10px;
+		padding: 3%;
+
+		> img {
+			display: block;
+			width: 50%;
+			margin: auto;
+		}
+
+		> p {
+			color: #549b83;
+			font-weight: bold;
+			font-size: x-large;
+			margin: auto;
+		}
+
+		.dropdown {
+			.dropdown-toggle {
+				width: 100%;
+				text-align: left;
+				padding: 1.5%;
+				border: solid 1px #ced8e0;
+				border-radius: 5px;
+				color: #999999;
+
+				&::after {
+					color: black;
+					position: absolute;
+					left: 95%;
+					top: 45%;
+				}
+			}
+
+			.dropdown-menu {
+				width: 100%;
+
+				.dropdown-item {
+					display: flex;
+					flex-direction: row;
+					gap: 2%;
+					justify-content: left;
+					align-items: center;
+					transition: background-color 0.2s;
+
+					.avatar {
+						width: 2.25rem;
+						height: 2.25rem;
+					}
+
+					.username {
+						height: min-content;
+						font-weight: bold;
+					}
+
+					&:hover {
+						cursor: pointer;
+						background-color: #d9dcdf;
+					}
+				}
+			}
+		}
+
+		> button[type='submit'] {
+			color: honeydew;
+			padding: 1.5%;
+			border-radius: 5px;
+			outline: none;
+			font-weight: bold;
+			border: solid 1px #64c064;
+			background-color: #64c0a1;
+		}
+	}
+}

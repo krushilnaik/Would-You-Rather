@@ -9,21 +9,21 @@ import NewQuestion from './components/NewQuestion';
 
 function App() {
 	return (
-		<div id="app">
+		<div id='app'>
 			<nav>
-				<ul id="links">
+				<ul id='links'>
 					<li className='current'>
-						<a href="/home">Home</a>
+						<a href='/home'>Home</a>
 					</li>
 					<li>
-						<a href="/new_question">New Question</a>
+						<a href='/new_question'>New Question</a>
 					</li>
 					<li>
-						<a href="/leader_board">Leader Board</a>
+						<a href='/leader_board'>Leader Board</a>
 					</li>
 				</ul>
 
-				<div id="user-info"></div>
+				<div id='user-info'></div>
 			</nav>
 
 			<Route exact path='/' render={() => <SignInForm />} />

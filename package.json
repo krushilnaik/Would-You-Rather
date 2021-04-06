@@ -18,7 +18,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"format": "prettier --write \"{,!(node_modules)/**/}*.(mjs|js|json|css|html)\""
+		"format": "prettier --write \"{,!(node_modules)/**/}*.(mjs|js|json|css|scss|html)\""
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -36,6 +36,7 @@
 		]
 	},
 	"devDependencies": {
+		"node-sass": "^5.0.0",
 		"prettier": "^2.2.1"
 	}
 }
