@@ -24,6 +24,32 @@ function Dashboard(props) {
 		).includes(question.id)
 	);
 
+
+	/**
+	 * generate markup for questions in an array
+	 * @param {import('../app/Question').default[]} qArray 
+	 * @returns array of divs representing an overview of each question
+	 */
+	const displayQuestions = qArray => (
+		qArray.map(
+			question => (
+				<div key={question.id} className="question card bg-light">
+					<div className="card-header">{`${question.submitter} asks:`}</div>
+
+					<div className='card-content'>
+						<img src={userDB.get(question.submitter).avatar} alt="user avatar" />
+
+						<div className="would-you-rather">
+							<h5>Would you rather</h5>
+							<p>...{question.optionOne}</p>
+							<button className='btn btn-outline-success'>View Poll</button>
+						</div>
+					</div>
+				</div>
+			)
+		)
+	)
+
 	return (
 		<div className='dashboard card'>
 			<ul className='nav nav-tabs' id='question-tabs' role='tablist'>
@@ -58,28 +84,10 @@ function Dashboard(props) {
 			</ul>
 			<div className='tab-content' id='questions'>
 				<div className='tab-pane show active' id='unanswered' role='tabpanel' aria-labelledby='unanswered-tab'>
-					{
-						unansweredQuestions.map(
-							question => (
-								<div key={question.id} className="question card bg-light">
-									<div className="card-header">{`${question.submitter} asks:`}</div>
-
-									<div className='card-content'>
-										<img src={userDB.get(question.submitter).avatar} alt="user avatar" />
-
-										<div className="would-you-rather">
-											<h5>Would you rather</h5>
-											<p>...{question.optionOne}</p>
-											<button className='btn btn-outline-success'>View Poll</button>
-										</div>
-									</div>
-								</div>
-							)
-						)
-					}
+					{displayQuestions(unansweredQuestions)}
 				</div>
 				<div className='tab-pane' id='answered' role='tabpanel' aria-labelledby='answered-tab'>
-					Answered Questions go here
+					{displayQuestions(answeredQuestions)}
 				</div>
 			</div>
 		</div>
