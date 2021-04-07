@@ -67,15 +67,15 @@ const questionReducer = (state = [], action) => {
 		case ANSWER_QUESTION:
 			const { submitter, questionID, answer } = action.answer;
 			if (answer === 1) {
-				state[questionID].answerOne();
-				userDB.forEach(user => {
-					if (user.name === submitter) {
-						user.questionsAnswered.push({ questionID, answer });
-					}
-				});
+				state[questionID].choseOne++;
 			} else {
-				state[questionID].answerTwo();
+				state[questionID].choseTwo++;
 			}
+			userDB.forEach(user => {
+				if (user.name === submitter) {
+					user.questionsAnswered.push({ questionID, answer });
+				}
+			});
 			return state;
 		default:
 			return state;
@@ -98,7 +98,7 @@ export const { logIn, logOut, answerQuestion, addQuestion } = bindActionCreators
 	{
 		logIn: activeUser => ({ type: LOG_IN, activeUser }),
 		logOut: () => ({ type: LOG_OUT }),
-		answerQuestion: (questionID, answer) => ({ type: ANSWER_QUESTION, answer: { questionID, answer } }),
+		answerQuestion: (submitter, questionID, answer) => ({ type: ANSWER_QUESTION, answer: { submitter, questionID, answer } }),
 		addQuestion: (optionOne, optionTwo, asker) => ({
 			type: ADD_QUESTION,
 			question: { optionOne, optionTwo, asker }
