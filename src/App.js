@@ -8,6 +8,7 @@ import SignInForm from './components/SignInForm';
 import LeaderBoard from './components/LeaderBoard';
 import NewQuestion from './components/NewQuestion';
 import PageNotFound from './components/PageNotFound';
+import MustSignIn from './components/MustSignIn';
 
 import { logOut } from './app/store';
 
@@ -48,8 +49,8 @@ function App(props) {
 
 			<Switch>
 				<Route exact path='/' render={() => (user ? <Home /> : <SignInForm />)} />
-				<Route exact path='/new_question' render={() => <NewQuestion />} />
-				<Route exact path='/leader_board' render={() => <LeaderBoard />} />
+				<Route exact path='/new_question' render={() => (user ? <NewQuestion /> : <MustSignIn />)} />
+				<Route exact path='/leader_board' render={() => (user ? <LeaderBoard /> : <MustSignIn />)} />
 				<Route path='*' render={() => <PageNotFound />} />
 			</Switch>
 		</div>
