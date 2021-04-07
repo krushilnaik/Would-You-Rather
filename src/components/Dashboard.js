@@ -24,10 +24,19 @@ function Dashboard(props) {
 		).includes(question.id)
 	);
 
+	/**
+	 * @param {React.MouseEvent<HTMLButtonElement>} event
+	 * @param {number} questionID
+	 */
+	const handleClick = (event, questionID) => {
+		event.preventDefault();
+
+		window.location.replace(`/question/${questionID}`)
+	}
 
 	/**
 	 * generate markup for questions in an array
-	 * @param {import('../app/Question').default[]} qArray 
+	 * @param {import('../app/Question').default[]} qArray
 	 * @returns array of divs representing an overview of each question
 	 */
 	const displayQuestions = qArray => (
@@ -42,13 +51,13 @@ function Dashboard(props) {
 						<div className="would-you-rather">
 							<h5>Would you rather</h5>
 							<p>...{question.optionOne}</p>
-							<button className='btn btn-outline-success'>View Poll</button>
+							<button onClick={event => {handleClick(event, question.id);}} className='btn btn-outline-success'>View Poll</button>
 						</div>
 					</div>
 				</div>
 			)
 		)
-	)
+	);
 
 	return (
 		<div className='dashboard card'>
@@ -83,10 +92,10 @@ function Dashboard(props) {
 				</li>
 			</ul>
 			<div className='tab-content' id='questions'>
-				<div className='tab-pane show active' id='unanswered' role='tabpanel' aria-labelledby='unanswered-tab'>
+				<div className='tab-pane fade show active' id='unanswered' role='tabpanel' aria-labelledby='unanswered-tab'>
 					{displayQuestions(unansweredQuestions)}
 				</div>
-				<div className='tab-pane' id='answered' role='tabpanel' aria-labelledby='answered-tab'>
+				<div className='tab-pane fade' id='answered' role='tabpanel' aria-labelledby='answered-tab'>
 					{displayQuestions(answeredQuestions)}
 				</div>
 			</div>
@@ -100,6 +109,6 @@ function Dashboard(props) {
  * 	activeUser: string
  * }} state
  */
-const mapStatetoProps = state => ({ user: userDB.get(state.activeUser), questions: state.questions });
+const mapStateToProps = state => ({ user: userDB.get(state.activeUser), questions: state.questions });
 
-export default connect(mapStatetoProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
