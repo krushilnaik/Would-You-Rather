@@ -10,7 +10,7 @@ import NewQuestion from './components/NewQuestion';
 import PageNotFound from './components/PageNotFound';
 import MustSignIn from './components/MustSignIn';
 
-import { logOut } from './app/store';
+import { logOut, userDB } from './app/store';
 
 /**
  * markup for the main app
@@ -41,7 +41,7 @@ function App(props) {
 				{
 					user && <div id='user-info'>
 						<span>Hello, {user}</span>
-						<img src="assets/images/react-redux.jpeg" alt="user avatar" />
+						<img src={userDB[user].avatar} alt='user avatar' />
 						<button onClick={handleClick}>Logout</button>
 					</div>
 				}
