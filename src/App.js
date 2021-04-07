@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 
 import Home from './components/Home';
 import SignInForm from './components/SignInForm';
 import LeaderBoard from './components/LeaderBoard';
 import NewQuestion from './components/NewQuestion';
+import PageNotFound from './components/PageNotFound';
 
 import { logOut } from './app/store';
 
@@ -45,9 +46,12 @@ function App(props) {
 				}
 			</nav>
 
-			<Route exact path='/' render={() => user ? <Home /> : <SignInForm />} />
-			<Route exact path='/new_question' render={() => <NewQuestion />} />
-			<Route exact path='/leader_board' render={() => <LeaderBoard />} />
+			<Switch>
+				<Route exact path='/' render={() => (user ? <Home /> : <SignInForm />)} />
+				<Route exact path='/new_question' render={() => <NewQuestion />} />
+				<Route exact path='/leader_board' render={() => <LeaderBoard />} />
+				<Route path='*' render={() => <PageNotFound />} />
+			</Switch>
 		</div>
 	);
 }
