@@ -25,13 +25,13 @@ function App(props) {
 		<div id='app'>
 			<nav>
 				<ul id='links'>
-					<li className='current'>
+					<li className={ window.location.pathname === '/home' ? `current` : ''}>
 						<a href='/home'>Home</a>
 					</li>
-					<li>
+					<li className={ window.location.pathname === '/new_question' ? `current` : ''}>
 						<a href='/new_question'>New Question</a>
 					</li>
-					<li>
+					<li className={ window.location.pathname === '/leader_board' ? `current` : ''}>
 						<a href='/leader_board'>Leader Board</a>
 					</li>
 				</ul>
