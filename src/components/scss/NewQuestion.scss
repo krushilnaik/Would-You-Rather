@@ -1,0 +1,39 @@
+.new-question {
+	width: 35%;
+	min-width: 500px;
+	margin: auto;
+
+	.card-header {
+		text-align: center;
+		font-weight: bold;
+		margin-bottom: 2%;
+	}
+
+	form {
+		display: grid;
+		gap: 10px;
+		padding: 2%;
+		height: fit-content;
+		align-items: center;
+
+		.divider {
+			display: grid;
+			grid-template-columns: 1fr 3em 1fr;
+
+			span {
+				font-weight: bold;
+				text-align: center;
+				align-self: center;
+			}
+		}
+
+		> h6, > h4 {
+			font-weight: bold;
+		}
+
+		> button[type='submit'] {
+			color: honeydew;
+			background-color: #00b3a4;
+		}
+	}
+}
