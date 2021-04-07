@@ -7,7 +7,7 @@ const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
 
 export const userDB = {
-	"Krushil Naik": new User('Krushil Naik'),
+	"Krushil Naik": new User('Krushil Naik', "https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png"),
 	"Tyler McGinnis": new User('Tyler McGinnis'),
 	"Guest": new User('Guest')
 };
