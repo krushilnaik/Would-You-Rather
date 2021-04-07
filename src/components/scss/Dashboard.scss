@@ -22,5 +22,47 @@
 
 	#questions {
 		border-top: 1px solid #dee2e6;
+		display: flex;
+		flex-direction: column;
+		gap: 2%;
+		padding: 2%;
+
+		.question {
+			height: fit-content;
+
+			.card-header {
+				font-weight: bold;
+			}
+
+			.card-content {
+				display: grid;
+				grid-template-columns: 1fr 2fr;
+				padding: 2%;
+				height: 160px;
+
+				> img {
+					align-self: center;
+					justify-self: center;
+					height: 130px;
+				}
+
+				.would-you-rather {
+					padding-left: 5%;
+					height: 130px;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					border-left: solid 1px lightgray;
+
+					> h5 {
+						font-weight: bold;
+					}
+
+					> p {
+						text-overflow: ellipsis;
+					}
+				}
+			}
+		}
 	}
 }
