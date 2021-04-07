@@ -1,23 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './scss/NewQuestion.scss';
 
+import { addQuestion } from '../app/store';
+
 function NewQuestion() {
+	const [optionOne, setOptionOne] = useState('');
+	const [optionTwo, setOptionTwo] = useState('');
+
+	/**
+	 * @param {React.MouseEvent<HTMLButtonElement>} event
+	 */
+	const handleFormSubmit = event => {
+		event.preventDefault();
+
+		// add question to redux store
+		addQuestion(optionOne, optionTwo);
+	};
+
 	return (
-		<div className="new-question card">
-			<h3 className="card-header bg-white">Create New Question</h3>
+		<div className='new-question card'>
+			<h3 className='card-header bg-white'>Create New Question</h3>
 
 			<form>
 				<h6>Complete the question:</h6>
 				<h5>Would you rather...</h5>
 
-				<input className='form-control' type="text" name="option_one" id="option_one" placeholder='Enter Option One Text Here:' />
-				<div className="divider">
+				<input
+					type='text'
+					className='form-control'
+					value={optionOne}
+					onChange={event => {
+						setOptionOne(event.currentTarget.value);
+					}}
+					placeholder='Enter Option One Text Here:'
+				/>
+
+				<div className='divider'>
 					<hr />
 					<span className='or'>OR</span>
 					<hr />
 				</div>
-				<input className='form-control'  type="text" name="option_two" id="option_two" placeholder='Enter Option Two Text Here:' />
-				<button className='form-control' type="submit">Submit</button>
+
+				<input
+					type='text'
+					className='form-control'
+					value={optionTwo}
+					onChange={event => {
+						setOptionTwo(event.currentTarget.value);
+					}}
+					placeholder='Enter Option Two Text Here:'
+				/>
+
+				<button onClick={handleFormSubmit} className='form-control' type='submit'>
+					Submit
+				</button>
 			</form>
 		</div>
 	);

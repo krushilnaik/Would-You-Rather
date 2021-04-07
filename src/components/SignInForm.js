@@ -9,9 +9,9 @@ function SignInForm() {
 
 	/**
 	 * attempt to log in with the selected user
-	 * @param {React.MouseEvent<HTMLButtonElement>} event 
+	 * @param {React.MouseEvent<HTMLButtonElement>} event
 	 */
-	const handleFormSubmit = (event) => {
+	const handleFormSubmit = event => {
 		event.preventDefault();
 		if (!user) {
 			alert('Please select a user');
@@ -23,9 +23,9 @@ function SignInForm() {
 
 	/**
 	 * makeshift select element's driver function
-	 * @param {React.MouseEvent<HTMLButtonElement|HTMLDivElement>} event 
+	 * @param {React.MouseEvent<HTMLButtonElement|HTMLDivElement>} event
 	 */
-	const handleSelect = (event) => {
+	const handleSelect = event => {
 		event.preventDefault();
 
 		const target = event.currentTarget;
@@ -58,7 +58,7 @@ function SignInForm() {
 						aria-haspopup='true'
 						aria-expanded='false'
 						onClick={handleSelect}
-						style={ {color: user ? 'black' : '#999999'} }
+						style={{ color: user ? 'black' : '#999999' }}
 					>
 						{user || 'Select user:'}
 					</button>

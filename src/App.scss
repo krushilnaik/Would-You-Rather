@@ -28,10 +28,11 @@ nav {
 		list-style: none;
 
 		li {
-			transition: .2s;
+			transition: 0.2s;
 			padding: 0.5em 1.5em;
 
-			&.current, &:hover {
+			&.current,
+			&:hover {
 				background-color: #00b3a4;
 				cursor: pointer;
 
@@ -47,6 +48,7 @@ nav {
 		flex-direction: row;
 		align-items: center;
 		gap: 25px;
+		padding-bottom: 1.5%;
 
 		height: fit-content;
 
@@ -56,6 +58,7 @@ nav {
 		}
 
 		> button {
+			margin-left: 10px;
 			border: none;
 			background-color: transparent;
 		}
