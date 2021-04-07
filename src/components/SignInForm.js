@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './scss/SignInForm.scss';
 
-import { logIn } from '../app/store';
+import { logIn, userDB } from '../app/store';
 
 function SignInForm() {
 	let [user, setUser] = useState('');
@@ -63,18 +63,16 @@ function SignInForm() {
 						{user || 'Select user:'}
 					</button>
 					<div className='dropdown-menu' aria-labelledby='user-select'>
-						<div className='dropdown-item' onClick={handleSelect}>
-							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
-							<span className='username'>Krushil Naik</span>
-						</div>
-						<div className='dropdown-item' onClick={handleSelect}>
-							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
-							<span className='username'>Tyler McGinnis</span>
-						</div>
-						<div className='dropdown-item' onClick={handleSelect}>
-							<img className='avatar' src='assets/images/react-redux.jpeg' alt='user avatar' />
-							<span className='username'>Guest</span>
-						</div>
+						{
+							Object.values(userDB).map(
+								user => (
+									<div className='dropdown-item' onClick={handleSelect}>
+										<img className='avatar' src={user.avatar} alt='user avatar' />
+										<span className='username'>{user.name}</span>
+									</div>
+								)
+							)
+						}
 					</div>
 				</div>
 

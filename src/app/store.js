@@ -6,6 +6,12 @@ import thunk from 'redux-thunk';
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
 
+export const userDB = {
+	"Krushil Naik": new User('Krushil Naik'),
+	"Tyler McGinnis": new User('Tyler McGinnis'),
+	"Guest": new User('Guest')
+};
+
 /**
  * @param {string} state - user we're currently logged in as
  * @param {{type: string, user: string}} action - action
