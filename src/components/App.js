@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import './App.scss';
+import './scss/App.scss';
 
-import Home from './components/Home';
-import SignInForm from './components/SignInForm';
-import LeaderBoard from './components/LeaderBoard';
-import NewQuestion from './components/NewQuestion';
-import PageNotFound from './components/PageNotFound';
-import MustSignIn from './components/MustSignIn';
+import Home from './Home';
+import SignInForm from './SignInForm';
+import LeaderBoard from './LeaderBoard';
+import NewQuestion from './NewQuestion';
+import PageNotFound from './PageNotFound';
+import MustSignIn from './MustSignIn';
 
-import { logOut, userDB } from './app/store';
+import { logOut, userDB } from '../app/store';
 
 /**
  * markup for the main app
