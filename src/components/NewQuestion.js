@@ -4,11 +4,11 @@ import './scss/NewQuestion.scss';
 function NewQuestion() {
 	return (
 		<div className="new-question card">
-			<h2 className="card-header bg-white">Create New Question</h2>
+			<h3 className="card-header bg-white">Create New Question</h3>
 
 			<form>
 				<h6>Complete the question:</h6>
-				<h4>Would you rather...</h4>
+				<h5>Would you rather...</h5>
 
 				<input className='form-control' type="text" name="option_one" id="option_one" placeholder='Enter Option One Text Here:' />
 				<div className="divider">
