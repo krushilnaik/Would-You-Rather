@@ -1,8 +1,8 @@
 class Question {
 	/**
-	 * @param {number} id 
-	 * @param {string} optionOne 
-	 * @param {string} optionTwo 
+	 * @param {number} id
+	 * @param {string} optionOne
+	 * @param {string} optionTwo
 	 * @param {string} submitter
 	 */
 	constructor(id, optionOne, optionTwo, submitter) {
@@ -16,8 +16,12 @@ class Question {
 		this.choseTwo = 0;
 	}
 
-	answerOne() { this.choseOne++; }
-	answerTwo() { this.choseTwo++; }
+	answerOne() {
+		this.choseOne++;
+	}
+	answerTwo() {
+		this.choseTwo++;
+	}
 }
 
 export default Question;

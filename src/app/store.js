@@ -6,19 +6,25 @@ import thunk from 'redux-thunk';
 import User from './User';
 import Question from './Question';
 
-const LOG_IN          = 'LOG_IN';
-const LOG_OUT         = 'LOG_OUT';
-const ADD_QUESTION    = 'ADD_QUESTION';
+const LOG_IN = 'LOG_IN';
+const LOG_OUT = 'LOG_OUT';
+const ADD_QUESTION = 'ADD_QUESTION';
 const ANSWER_QUESTION = 'ANSWER_QUESTION';
 
 /**
  * @type {Map<string, User>}
  */
 export const userDB = new Map([
-	["Krushil Naik"   , new User('Krushil Naik', "https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png")],
-	["Tyler McGinnis" , new User('Tyler McGinnis')],
-	["Guest"          , new User('Guest', 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png')]
-]);;
+	[
+		'Krushil Naik',
+		new User(
+			'Krushil Naik',
+			'https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png'
+		)
+	],
+	['Tyler McGinnis', new User('Tyler McGinnis')],
+	['Guest', new User('Guest', 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png')]
+]);
 
 /**
  * @param {string} state - user we're currently logged in as
@@ -57,21 +63,16 @@ const questionReducer = (state = [], action) => {
 	switch (action.type) {
 		case ADD_QUESTION:
 			const { optionOne, optionTwo, asker } = action.question;
-
-			console.log(`Would you rather ${optionOne} or ${optionTwo}`);
-
-			return state.concat( [new Question(state.length, optionOne, optionTwo, asker)] );
+			return state.concat([new Question(state.length, optionOne, optionTwo, asker)]);
 		case ANSWER_QUESTION:
 			const { submitter, questionID, answer } = action.answer;
 			if (answer === 1) {
 				state[questionID].answerOne();
-				userDB.forEach(
-					user => {
-						if (user.name === submitter) {
-							user.questionsAnswered.push( {questionID, answer} );
-						}
+				userDB.forEach(user => {
+					if (user.name === submitter) {
+						user.questionsAnswered.push({ questionID, answer });
 					}
-				)
+				});
 			} else {
 				state[questionID].answerTwo();
 			}
@@ -82,23 +83,26 @@ const questionReducer = (state = [], action) => {
 };
 
 const rootReducer = combineReducers({
-	activeUser : loginReducer,
-	questions  : questionReducer
+	activeUser: loginReducer,
+	questions: questionReducer
 });
 
 const persistConfig = { key: 'root', storage };
 
 export const store = configureStore({
-	reducer    : persistReducer(persistConfig, rootReducer),
-	middleware : [thunk]
+	reducer: persistReducer(persistConfig, rootReducer),
+	middleware: [thunk]
 });
 
 export const { logIn, logOut, answerQuestion, addQuestion } = bindActionCreators(
 	{
-		logIn          : activeUser => ({ type: LOG_IN, activeUser }),
-		logOut         : () => ({ type: LOG_OUT }),
-		answerQuestion : (questionID, answer) => ({type: ANSWER_QUESTION, answer: {questionID, answer}}),
-		addQuestion    : (optionOne, optionTwo, asker) => ({type: ADD_QUESTION, question: {optionOne, optionTwo, asker}})
+		logIn: activeUser => ({ type: LOG_IN, activeUser }),
+		logOut: () => ({ type: LOG_OUT }),
+		answerQuestion: (questionID, answer) => ({ type: ANSWER_QUESTION, answer: { questionID, answer } }),
+		addQuestion: (optionOne, optionTwo, asker) => ({
+			type: ADD_QUESTION,
+			question: { optionOne, optionTwo, asker }
+		})
 	},
 	store.dispatch
 );

@@ -1,0 +1,26 @@
+.dashboard {
+	width: 30%;
+	margin: auto;
+
+	#question-tabs {
+		li {
+			width: 50%;
+
+			button {
+				width: 100%;
+				font-weight: 600;
+				color: black;
+				background-color: white;
+
+				&.active {
+					background-color: #dbdbdb;
+					color: #00a3a3;
+				}
+			}
+		}
+	}
+
+	#questions {
+		border-top: 1px solid #dee2e6;
+	}
+}

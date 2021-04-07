@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import './scss/NewQuestion.scss';
 
 import { addQuestion } from '../app/store';
 
-function NewQuestion() {
+/**
+ * @param {{user: string}} param0
+ */
+function NewQuestion({ user }) {
 	const [optionOne, setOptionOne] = useState('');
 	const [optionTwo, setOptionTwo] = useState('');
 
@@ -14,7 +18,7 @@ function NewQuestion() {
 		event.preventDefault();
 
 		// add question to redux store
-		addQuestion(optionOne, optionTwo);
+		addQuestion(optionOne, optionTwo, user);
 	};
 
 	return (
@@ -59,4 +63,10 @@ function NewQuestion() {
 	);
 }
 
-export default NewQuestion;
+/**
+ * @param { { activeUser: string} } state
+ * @returns
+ */
+const mapStateToProps = state => ({ user: state.activeUser });
+
+export default connect(mapStateToProps)(NewQuestion);

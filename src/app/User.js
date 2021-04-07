@@ -23,7 +23,7 @@ class User {
 	 * @param {number} answer - user choice
 	 */
 	answerQuestion(questionID, answer) {
-		this.questionsAnswered.push( {questionID, answer} );
+		this.questionsAnswered.push({ questionID, answer });
 	}
 }
 
