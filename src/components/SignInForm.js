@@ -64,9 +64,9 @@ function SignInForm() {
 					</button>
 					<div className='dropdown-menu' aria-labelledby='user-select'>
 						{
-							Object.values(userDB).map(
+							Array.from(userDB.values()).map(
 								user => (
-									<div className='dropdown-item' onClick={handleSelect}>
+									<div key={user.name} className='dropdown-item' onClick={handleSelect}>
 										<img className='avatar' src={user.avatar} alt='user avatar' />
 										<span className='username'>{user.name}</span>
 									</div>

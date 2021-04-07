@@ -41,7 +41,7 @@ function App(props) {
 				{
 					user && <div id='user-info'>
 						<span>Hello, {user}</span>
-						<img src={userDB[user].avatar} alt='user avatar' />
+						<img src={userDB.get(user).avatar} alt='user avatar' />
 						<button onClick={handleClick}>Logout</button>
 					</div>
 				}
