@@ -14,26 +14,26 @@ import { logOut, userDB } from './app/store';
 
 /**
  * markup for the main app
- * @param { {user: string} } props 
+ * @param { {user: string} } props
  */
 function App(props) {
 	const { user } = props;
 
 	const handleClick = () => {
 		logOut();
-	}
+	};
 
 	return (
 		<div id='app'>
 			<nav>
 				<ul id='links'>
-					<li className={ window.location.pathname === '/home' ? `current` : ''}>
-						<a href='/home'>Home</a>
+					<li className={window.location.pathname === '/' ? `current` : ''}>
+						<a href='/'>Home</a>
 					</li>
-					<li className={ window.location.pathname === '/new_question' ? `current` : ''}>
+					<li className={window.location.pathname === '/new_question' ? `current` : ''}>
 						<a href='/new_question'>New Question</a>
 					</li>
-					<li className={ window.location.pathname === '/leader_board' ? `current` : ''}>
+					<li className={window.location.pathname === '/leader_board' ? `current` : ''}>
 						<a href='/leader_board'>Leader Board</a>
 					</li>
 				</ul>
@@ -59,8 +59,8 @@ function App(props) {
 
 /**
  * link Redux store with App's state
- * @param { {user: string} } state 
+ * @param { {activeUser: string} } state
  */
-const mapStateToProps = (state) => ({user: state.user});
+const mapStateToProps = state => ({ user: state.activeUser });
 
 export default connect(mapStateToProps)(App);
