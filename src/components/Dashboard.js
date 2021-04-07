@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Question from '../app/Question';
-import User from '../app/User';
 import { userDB } from '../app/store';
 import './scss/Dashboard.scss';
 
 /**
- * @param { {questions: Question[], user: User} } props
+ * @param { {
+ * 	questions: import('../app/Question').default[],
+ * 	user: import('../app/User').default
+ * } } props
  */
 function Dashboard(props) {
 	const { questions, user } = props;
-
-	console.log(`Listing questions from the POV of ${user.name}`);
-	console.log(questions);
 
 	const answeredQuestions = questions.filter(
 		question => user.questionsAnswered.map(
@@ -25,9 +23,6 @@ function Dashboard(props) {
 			answers => answers.id
 		).includes(question.id)
 	);
-
-	console.log(`User has answered these questions ${JSON.stringify(answeredQuestions)}`);
-	console.log(`User hasn't answered these questions ${JSON.stringify(unansweredQuestions)}`);
 
 	return (
 		<div className='dashboard card'>
@@ -68,7 +63,7 @@ function Dashboard(props) {
 							question => (
 								<div key={question.id} className="question card bg-light">
 									<div className="card-header">{`${question.submitter} asks:`}</div>
-									
+
 									<div className='card-content'>
 										<img src={userDB.get(question.submitter).avatar} alt="user avatar" />
 
@@ -92,7 +87,10 @@ function Dashboard(props) {
 }
 
 /**
- * @param {{questions: Question[], activeUser: string}} state
+ * @param {{
+ * 	questions: import('../app/Question').default[],
+ * 	activeUser: string
+ * }} state
  */
 const mapStatetoProps = state => ({ user: userDB.get(state.activeUser), questions: state.questions });
 
