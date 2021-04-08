@@ -81,7 +81,7 @@ function Question(props) {
 							{choseTwo > 0 && <div className="percentage" style={{ width: `${choseTwo / (choseOne + choseTwo) * 100}%` }}>{`${choseTwo / (choseOne + choseTwo) * 100}%`}</div>}
 						</div>
 
-						<p>{`${choseTwo} out of ${choseOne + choseTwo} votes`}</p>
+						<p className='statement'>{`${choseTwo} out of ${choseOne + choseTwo} votes`}</p>
 					</div>
 				</div>
 			</div>
