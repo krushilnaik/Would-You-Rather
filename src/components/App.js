@@ -11,7 +11,7 @@ import PageNotFound from './PageNotFound';
 import MustSignIn from './MustSignIn';
 
 import { logOut, userDB } from '../app/store';
-import Dashboard from './Dashboard';
+// import Dashboard from './Dashboard';
 import Question from './Question';
 
 /**
@@ -51,7 +51,7 @@ function App(props) {
 
 			<Switch>
 				<Route exact path='/' render={() => (user ? <Home /> : <SignInForm />)} />
-				<Route exact path='/dashboard' render={() => (user ? <Dashboard /> : <MustSignIn />)} />
+				{/* <Route exact path='/dashboard' render={() => (user ? <Dashboard /> : <MustSignIn />)} /> */}
 				<Route exact path='/new_question' render={() => (user ? <NewQuestion /> : <MustSignIn />)} />
 				<Route exact path='/leader_board' render={() => (user ? <LeaderBoard /> : <MustSignIn />)} />
 				<Route path='/question/:id' children={user ? <Question /> : <MustSignIn />} />

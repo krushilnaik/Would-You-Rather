@@ -19,7 +19,7 @@ function NewQuestion({ user }) {
 
 		// add question to redux store
 		addQuestion(optionOne, optionTwo, user);
-		window.location.replace('/dashboard');
+		window.location.replace('/');
 	};
 
 	return (
