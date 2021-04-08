@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import './scss/NewQuestion.scss';
 
 import { addQuestion } from '../app/store';
+import { useHistory } from 'react-router';
 
 /**
- * @param {{user: string}} param0
+ * @param {{user: string, questions: import('../app/Question').default[]}} param0
  */
-function NewQuestion({ user }) {
+function NewQuestion({ user, questions }) {
 	const [optionOne, setOptionOne] = useState('');
 	const [optionTwo, setOptionTwo] = useState('');
+	let history = useHistory();
 
 	/**
 	 * @param {React.MouseEvent<HTMLButtonElement>} event
@@ -18,8 +20,8 @@ function NewQuestion({ user }) {
 		event.preventDefault();
 
 		// add question to redux store
-		addQuestion(optionOne, optionTwo, user);
-		window.location.replace('/');
+		addQuestion(optionOne, optionTwo, questions.length, user);
+		history.push('/');
 	};
 
 	return (
@@ -65,9 +67,9 @@ function NewQuestion({ user }) {
 }
 
 /**
- * @param { { activeUser: string} } state
+ * @param { { activeUser: string, questions: import('../app/Question').default[]} } state
  * @returns
  */
-const mapStateToProps = state => ({ user: state.activeUser });
+const mapStateToProps = state => ({ user: state.activeUser, questions: state.questions });
 
 export default connect(mapStateToProps)(NewQuestion);

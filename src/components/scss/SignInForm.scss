@@ -25,6 +25,10 @@
 		gap: 10px;
 		padding: 3%;
 
+		* {
+			user-select: none;
+		}
+
 		> img {
 			display: block;
 			width: 50%;

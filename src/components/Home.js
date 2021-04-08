@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { userDB } from '../app/store';
+import { useHistory } from 'react-router';
 import './scss/Home.scss';
 
 /**
  * @param { {
  * 	questions: import('../app/Question').default[],
- * 	user: import('../app/User').default
+ * 	user: import('../app/User').default,
+ * 	userDB: Map<string, import('../app/User').default>
  * } } props
  */
 function Home(props) {
-	const { questions, user } = props;
+	const { questions, user, userDB } = props;
+	let history = useHistory();
 
 	const answeredQuestions = questions.filter(
 		question => user.questionsAnswered.map(
@@ -30,8 +32,7 @@ function Home(props) {
 	 */
 	const handleClick = (event, questionID) => {
 		event.preventDefault();
-
-		window.location.replace(`/question/${questionID}`)
+		history.push(`/question/${questionID}`);
 	}
 
 	/**
@@ -106,9 +107,10 @@ function Home(props) {
 /**
  * @param {{
  * 	questions: import('../app/Question').default[],
- * 	activeUser: string
+ * 	activeUser: string,
+ * 	userDB: Map<string, import('../app/User').default>
  * }} state
  */
-const mapStateToProps = state => ({ user: userDB.get(state.activeUser), questions: state.questions });
+const mapStateToProps = state => ({ user: state.userDB.get(state.activeUser), questions: state.questions, userDB: state.userDB });
 
 export default connect(mapStateToProps)(Home);

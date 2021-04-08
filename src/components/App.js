@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import './scss/App.scss';
 
 import Home from './Home';
@@ -10,16 +10,17 @@ import NewQuestion from './NewQuestion';
 import PageNotFound from './PageNotFound';
 import MustSignIn from './MustSignIn';
 
-import { logOut, userDB } from '../app/store';
+import { logOut } from '../app/store';
 // import Dashboard from './Dashboard';
 import Question from './Question';
 
 /**
  * markup for the main app
- * @param { {user: string} } props
+ * @param { {user: string, userDB: Map<string, import('../app/User').default>} } props
  */
 function App(props) {
-	const { user } = props;
+	const { user, userDB } = props;
+	console.log(userDB instanceof Map);
 
 	const handleClick = () => {
 		logOut();
@@ -30,13 +31,13 @@ function App(props) {
 			<nav>
 				<ul id='links'>
 					<li className={window.location.pathname === '/' ? `current` : ''}>
-						<a href='/'>Home</a>
+						<Link to='/'>Home</Link>
 					</li>
 					<li className={window.location.pathname === '/new_question' ? `current` : ''}>
-						<a href='/new_question'>New Question</a>
+						<Link to='/new_question'>New Question</Link>
 					</li>
 					<li className={window.location.pathname === '/leader_board' ? `current` : ''}>
-						<a href='/leader_board'>Leader Board</a>
+						<Link to='/leader_board'>Leader Board</Link>
 					</li>
 				</ul>
 
@@ -63,8 +64,8 @@ function App(props) {
 
 /**
  * link Redux store with App's state
- * @param { {activeUser: string} } state
+ * @param { {activeUser: string, userDB: Map<string, import('../app/User').default>} } state
  */
-const mapStateToProps = state => ({ user: state.activeUser });
+const mapStateToProps = state => ({ user: state.activeUser, userDB: state.userDB });
 
 export default connect(mapStateToProps)(App);

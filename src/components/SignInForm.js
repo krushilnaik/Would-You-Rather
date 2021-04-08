@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 
 import './scss/SignInForm.scss';
 
-import { logIn, userDB } from '../app/store';
+import { logIn } from '../app/store';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
-function SignInForm() {
+/**
+ * @param {{userDB: Map<string, import('../app/User').default>}} props 
+ */
+function SignInForm(props) {
 	let [user, setUser] = useState('');
+	let history = useHistory();
 
 	/**
 	 * attempt to log in with the selected user
@@ -18,6 +24,7 @@ function SignInForm() {
 		} else {
 			// log in as selected user
 			logIn(user);
+			history.push('/');
 		}
 	};
 
@@ -64,7 +71,7 @@ function SignInForm() {
 					</button>
 					<div className='dropdown-menu' aria-labelledby='user-select'>
 						{
-							Array.from(userDB.values()).map(
+							Array.from(props.userDB.values()).map(
 								user => (
 									<div key={user.name} className='dropdown-item' onClick={handleSelect}>
 										<img className='avatar' src={user.avatar} alt='user avatar' />
@@ -84,4 +91,9 @@ function SignInForm() {
 	);
 }
 
-export default SignInForm;
+/**
+ * @param {{userDB: Map<string, import('../app/User').default>}} state 
+ */
+const mapStateToProps = state => ({ userDB: state.userDB });
+
+export default connect(mapStateToProps)(SignInForm);
