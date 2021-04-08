@@ -35,7 +35,7 @@ function Question(props) {
 		<React.Fragment>
 			<div className="card-header">{`${question.submitter} asks:`}</div>
 			<div className='card-content'>
-				<img src={userDB.get(props.user).avatar} alt="user avatar" />
+				<img src={userDB.get(question.submitter).avatar} alt="user avatar" />
 				<div className="would-you-rather asking">
 					<h5>Would You Rather ...</h5>
 					<div>
@@ -62,7 +62,7 @@ function Question(props) {
 		return <React.Fragment>
 			<div className="card-header">{`Asked by ${question.submitter}`}</div>
 			<div className='card-content'>
-				<img src={userDB.get(props.user).avatar} alt="user avatar" />
+				<img src={userDB.get(question.submitter).avatar} alt="user avatar" />
 				<div className="would-you-rather answered">
 					<h5>Results:</h5>
 					<div className={`card ${userChoice === 1 ? 'chosen' : ''}`}>
