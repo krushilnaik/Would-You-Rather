@@ -89,7 +89,7 @@ function Question(props) {
 	};
 
 	return (
-		<div className="question card">
+		<div className={`question card ${view}`}>
 			{ view === 'answered' ? answerView() : askView() }
 		</div>
 	);

@@ -3,6 +3,14 @@
 	min-width: 500px;
 	margin: auto;
 
+	&.unanswered {
+		height: 250px;
+	}
+
+	&.answered {
+		height: 390px;
+	}
+
 	.card-header {
 		font-weight: bold;
 	}
@@ -11,7 +19,7 @@
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		padding: 2%;
-		height: 340px;
+		height: 100%;
 
 		> img {
 			align-self: center;
