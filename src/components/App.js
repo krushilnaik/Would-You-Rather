@@ -54,7 +54,7 @@ function App(props) {
 				<Route exact path='/dashboard' render={() => (user ? <Dashboard /> : <MustSignIn />)} />
 				<Route exact path='/new_question' render={() => (user ? <NewQuestion /> : <MustSignIn />)} />
 				<Route exact path='/leader_board' render={() => (user ? <LeaderBoard /> : <MustSignIn />)} />
-				<Route path='/question/:id' children={<Question />} />
+				<Route path='/question/:id' children={user ? <Question /> : <MustSignIn />} />
 				<Route path='*' render={() => <PageNotFound />} />
 			</Switch>
 		</div>
