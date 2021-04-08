@@ -56,6 +56,8 @@ function Question(props) {
 			question => question.questionID === Number(id)
 		)[0].answer;
 
+		const { choseOne, choseTwo } = question;
+
 		return <React.Fragment>
 			<div className="card-header">{`Asked by ${question.submitter}`}</div>
 			<div className='card-content'>
@@ -64,9 +66,21 @@ function Question(props) {
 					<h5>Results:</h5>
 					<div className={`card ${userChoice === 1 ? 'chosen' : ''}`}>
 						<p>Would you rather {question.optionOne}?</p>
+
+						<div className="bar">
+							{choseOne > 0 && <div className="percentage" style={{ width: `${choseOne / (choseOne + choseTwo) * 100}%` }}>{`${choseOne / (choseOne + choseTwo) * 100}%`}</div>}
+						</div>
+
+						<p>{`${choseOne} out of ${choseOne + choseTwo} votes`}</p>
 					</div>
 					<div className={`card ${userChoice === 2 ? 'chosen' : ''}`}>
 						<p>Would you rather {question.optionTwo}?</p>
+
+						<div className="bar">
+							{choseTwo > 0 && <div className="percentage" style={{ width: `${choseTwo / (choseOne + choseTwo) * 100}%` }}>{`${choseTwo / (choseOne + choseTwo) * 100}%`}</div>}
+						</div>
+
+						<p>{`${choseTwo} out of ${choseOne + choseTwo} votes`}</p>
 					</div>
 				</div>
 			</div>

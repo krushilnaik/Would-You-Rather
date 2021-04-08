@@ -50,7 +50,7 @@ function Dashboard(props) {
 
 						<div className="would-you-rather">
 							<h5>Would you rather</h5>
-							<p>...{question.optionOne}</p>
+							<p>...{question.optionOne}...</p>
 							<button onClick={event => {handleClick(event, question.id);}} className='btn btn-outline-success'>View Poll</button>
 						</div>
 					</div>

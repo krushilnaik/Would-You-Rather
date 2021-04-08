@@ -6,14 +6,12 @@ import thunk from 'redux-thunk';
 import User from './User';
 import Question from './Question';
 
+// Action Types
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
 const ADD_QUESTION = 'ADD_QUESTION';
 const ANSWER_QUESTION = 'ANSWER_QUESTION';
 
-/**
- * @type {Map<string, User>}
- */
 export const userDB = new Map([
 	[
 		'Krushil Naik',
@@ -22,8 +20,19 @@ export const userDB = new Map([
 			'https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png'
 		)
 	],
-	['Tyler McGinnis', new User('Tyler McGinnis')],
-	['Guest', new User('Guest', 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png')]
+	[
+		'Tyler McGinnis',
+		new User(
+			'Tyler McGinnis'
+		)
+	],
+	[
+		'Guest',
+		new User(
+			'Guest',
+			'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'
+		)
+	]
 ]);
 
 /**
@@ -66,11 +75,7 @@ const questionReducer = (state = [], action) => {
 			return state.concat([new Question(state.length, optionOne, optionTwo, asker)]);
 		case ANSWER_QUESTION:
 			const { submitter, questionID, answer } = action.answer;
-			if (answer === 1) {
-				state[questionID].choseOne++;
-			} else {
-				state[questionID].choseTwo++;
-			}
+			answer === 1 ? state[questionID].choseOne++ : state[questionID].choseTwo++;
 			userDB.forEach(user => {
 				if (user.name === submitter) {
 					user.questionsAnswered.push({ questionID, answer });
