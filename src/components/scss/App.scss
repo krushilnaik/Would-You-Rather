@@ -2,8 +2,8 @@ nav {
 	margin: auto;
 	margin-bottom: 3%;
 	padding-top: 1.5%;
-	padding-left: 12.5%;
-	padding-right: 12.5%;
+	padding-left: 15%;
+	padding-right: 15%;
 
 	border-bottom: solid 2px #02a194;
 
@@ -16,6 +16,7 @@ nav {
 		display: flex;
 		flex-direction: row;
 		margin-bottom: 0%;
+		padding: 0%;
 
 		a {
 			color: black;
@@ -29,7 +30,8 @@ nav {
 
 		li {
 			transition: 0.2s;
-			padding: 0.5em 1.5em;
+			min-width: max-content;
+			padding: .8em 1.5em;
 
 			&.current,
 			&:hover {
@@ -61,6 +63,22 @@ nav {
 			margin-left: 10px;
 			border: none;
 			background-color: transparent;
+		}
+	}
+}
+
+
+@media only screen and (max-width: 1330px) {
+	nav {
+		padding-left: 0%;
+		padding-right: 0%;
+
+		#links {
+			justify-self: baseline;
+		}
+
+		#user-info {
+			justify-self: end;
 		}
 	}
 }
