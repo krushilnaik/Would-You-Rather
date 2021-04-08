@@ -1,0 +1,116 @@
+#leader-board {
+	width: 30%;
+	min-width: 550px;
+	margin: auto;
+
+	* {
+		font-weight: bold;
+	}
+	
+	> .card {
+		display: grid;
+		grid-template-columns: 1fr 18em 6.5em;
+		padding: 3%;
+		box-shadow: 1px 1px 2px lightgray;
+		height: 170px;
+		position: relative;
+
+		&:not(:last-child) {
+			margin-bottom: 2%;
+		}
+
+		.images {
+			display: grid;
+			grid-template-rows: 1fr;
+			border-right: solid 1px lightgray;
+
+			.cutout {
+				width: 60px;
+				height: 60px;
+				z-index: 1;
+				background-color: #e4e4e4;
+				position: absolute;
+				top: 0%;
+				left: 0%;
+				clip-path: polygon(0 0, 0% 100%, 100% 0);
+			}
+
+			> i {
+				z-index: 2;
+				position: absolute;
+				left: 1.5%;
+				top: 5%;
+
+				&.gold {
+					color: #f0b625;
+				}
+
+				&.green {
+					color: #00a5a5;
+				}
+
+				&.black {
+					color: #4e7979;
+				}
+			}
+
+			> img {
+				width: 110px;
+				height: 110px;
+				justify-self: center;
+				align-self: center;
+			}
+		}
+
+		.info {
+			padding: 0% 3%;
+			display: grid;
+			grid-template-rows: 3fr 3fr 3px 3fr;
+			border-right: solid 1px lightgray;
+			margin-right: 3%;
+			align-items: center;
+
+			h4 {
+				align-self: baseline;
+			}
+
+			hr {
+				margin: 0%;
+				padding: 0%;
+				height: 100%;
+			}
+
+			.score-group {
+				display: flex;
+				flex-direction: row;
+				padding: 0% 3%;
+				justify-content: space-between;
+			}
+		}
+
+		.score.card {
+			display: grid;
+			grid-template-rows: 3fr 5fr;
+
+			.card-header {
+				text-align: center;
+			}
+
+			.number-badge {
+				justify-self: center;
+				align-self: center;
+				background-color: #00b4b4;
+				color: honeydew;
+				width: 2.5em;
+				height: 2.5em;
+				border-radius: 50%;
+				display: grid;
+
+				span {
+					align-self: center;
+					justify-self: center;
+				}
+			}
+		}
+	}
+}
