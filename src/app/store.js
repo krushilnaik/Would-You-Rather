@@ -69,7 +69,7 @@ let userDB = [
 	},
 	{
 		name: 'Tyler McGinnis',
-			avatar: '/assets/images/react-redux.jpeg',
+			avatar: 'assets/images/react-redux.jpeg',
 			questionsAnswered: [],
 			questionsAsked: []
 	},
@@ -92,8 +92,9 @@ const questionReducer = (state = [], action) => {
 			return state.concat([{id: state.length, optionOne, optionTwo, submitter: asker, choseOne: 0, choseTwo: 0}]);
 		case ANSWER_QUESTION:
 			const { questionID, answer } = action.answer;
-			answer === 1 ? state[questionID].choseOne++ : state[questionID].choseTwo++;
-			return state;
+			let newState = Array.from(state);
+			answer === 1 ? newState[questionID].choseOne++ : newState[questionID].choseTwo++;
+			return newState;
 		default:
 			return state;
 	}
