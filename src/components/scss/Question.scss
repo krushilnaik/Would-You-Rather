@@ -82,6 +82,8 @@
 					.percentage {
 						background-color: #009b9b;
 						color: #dafffd;
+						text-align: end;
+						padding-right: 2%;
 					}
 				}
 
@@ -96,12 +98,12 @@
 						position: absolute;
 						right: 0%;
 						top: 0%;
-						transform: translate(50%, -50%);
+						transform: translate(50%, -40%);
 						background-color: goldenrod;
 						width: 3.1em;
 						height: 3.1em;
 						color: honeydew;
-						padding-top: 2.3%;
+						padding-top: 2.8%;
 						border-radius: 50%;
 						line-height: 1em;
 					}
