@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+					"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444 266" preserveAspectRatio="none">
+	<path id="rounded-trapezoid"
+	fill="#02a194"
+		 stroke="black" stroke-width="1"
+		d="M 0.00,266.00
+			C 0.00,266.00 86.64,32.73 86.64,32.73
+				91.25,20.50 96.25,0.00 130.91,0.00
+				130.91,0.00 312.67,0.00 312.67,0.00
+				335.00,0.00 350.00,14.50 355.25,36.00
+				355.25,36.00 444.00,266.00 444.00,266.00
+				444.00,266.00 0.00,266.00 0.00,266.00 Z" />
+</svg>
