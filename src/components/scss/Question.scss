@@ -96,16 +96,23 @@
 					&::after {
 						content: "Your vote";
 						position: absolute;
-						right: 0%;
-						top: 0%;
-						transform: translate(50%, -40%);
-						background-color: goldenrod;
-						width: 3.1em;
-						height: 3.1em;
-						color: honeydew;
-						padding-top: 2.8%;
-						border-radius: 50%;
+						width: min-content;
 						line-height: 1em;
+						top: 0%;
+						right: 0%;
+						transform: translate(50%, calc(-40% + 0.25em));
+						color: honeydew;
+					}
+					&::before {
+						content: "";
+						height: 3em;
+						width: 3em;
+						background-color: goldenrod;
+						border-radius: 50%;
+						position: absolute;
+						top: 0%;
+						right: 0%;
+						transform: translate(50%, -40%);
 					}
 
 					.statement {
