@@ -7,11 +7,12 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
 /**
- * @param {{userDB: Map<string, import('../app/User').default>}} props 
+ * @param {{userDB: import('../app/store').User[]}} props 
  */
 function SignInForm(props) {
 	let [user, setUser] = useState('');
 	let history = useHistory();
+	const { userDB } = props;
 
 	/**
 	 * attempt to log in with the selected user
@@ -38,7 +39,7 @@ function SignInForm(props) {
 		const target = event.currentTarget;
 
 		if (target instanceof HTMLButtonElement) {
-			target.innerText = user || 'Krushil Naik';
+			target.innerText = user || userDB[0].name;
 		} else {
 			const newUser = target.querySelector('span').innerText;
 			setUser(newUser);
@@ -71,7 +72,7 @@ function SignInForm(props) {
 					</button>
 					<div className='dropdown-menu' aria-labelledby='user-select'>
 						{
-							Array.from(props.userDB.values()).map(
+							Array.from(userDB.values()).map(
 								user => (
 									<div key={user.name} className='dropdown-item' onClick={handleSelect}>
 										<img className='avatar' src={user.avatar} alt='user avatar' />
@@ -92,7 +93,7 @@ function SignInForm(props) {
 }
 
 /**
- * @param {{userDB: Map<string, import('../app/User').default>}} state 
+ * @param {{userDB: import('../app/store').User[]}} state 
  */
 const mapStateToProps = state => ({ userDB: state.userDB });
 

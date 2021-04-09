@@ -6,7 +6,7 @@ import { addQuestion } from '../app/store';
 import { useHistory } from 'react-router';
 
 /**
- * @param {{user: string, questions: import('../app/Question').default[]}} param0
+ * @param {{user: string, questions: import('../app/store').Question[]}} param0
  */
 function NewQuestion({ user, questions }) {
 	const [optionOne, setOptionOne] = useState('');
@@ -67,7 +67,7 @@ function NewQuestion({ user, questions }) {
 }
 
 /**
- * @param { { activeUser: string, questions: import('../app/Question').default[]} } state
+ * @param { { activeUser: string, questions: import('../app/store').Question[]} } state
  * @returns
  */
 const mapStateToProps = state => ({ user: state.activeUser, questions: state.questions });

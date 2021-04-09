@@ -7,7 +7,7 @@ import './scss/Question.scss';
 import { store, answerQuestion } from '../app/store';
 
 /**
- * @param { {user: string, userDB: Map<string, import('../app/User').default>} } props
+ * @param { {user: string, userDB: import('../app/store').User[]} } props
  */
 function Question(props) {
 	// @ts-ignore
@@ -16,7 +16,7 @@ function Question(props) {
 	const question = store.getState().questions[id];
 	const [selection, setSelection] = useState(0);
 	const [view, setView] = useState(
-		userDB.get(props.user).questionsAnswered.map(q => q.questionID).includes(Number(id))
+		userDB.find(u => u.name === props.user).questionsAnswered.map(q => q.questionID).includes(Number(id))
 			? 'answered'
 			: 'unanswered'
 	);
@@ -36,6 +36,7 @@ function Question(props) {
 	const askView = () => (
 		<React.Fragment>
 			<div className="card-header">{`${question.submitter} asks:`}</div>
+
 			<div className='card-content'>
 				<img src={avatarURL.startsWith('http') ? avatarURL : `/${avatarURL}`} alt="user avatar" />
 				<div className="would-you-rather asking">
@@ -55,7 +56,7 @@ function Question(props) {
 	);
 
 	const answerView = () => {
-		const userChoice = userDB.get(props.user).questionsAnswered.filter(
+		const userChoice = userDB.find(u => u.name === props.user).questionsAnswered.filter(
 			question => question.questionID === Number(id)
 		)[0].answer;
 
@@ -101,7 +102,7 @@ function Question(props) {
 /**
  * @param { {
  * 	activeUser: string,
- * 	userDB: Map<string, import('../app/User').default>
+ * 	userDB: import('../app/store').User[]
  * } } state
  */
 const mapStateToProps = state => ({ user: state.activeUser, userDB: state.userDB });

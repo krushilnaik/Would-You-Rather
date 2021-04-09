@@ -5,9 +5,9 @@ import './scss/Home.scss';
 
 /**
  * @param { {
- * 	questions: import('../app/Question').default[],
- * 	user: import('../app/User').default,
- * 	userDB: Map<string, import('../app/User').default>
+ * 	questions: import('../app/store').Question[],
+ * 	user: import('../app/store').User,
+ * 	userDB: import('../app/store').User[]
  * } } props
  */
 function Home(props) {
@@ -37,7 +37,7 @@ function Home(props) {
 
 	/**
 	 * generate markup for questions in an array
-	 * @param {import('../app/Question').default[]} qArray
+	 * @param {import('../app/store').Question[]} qArray
 	 * @returns array of divs representing an overview of each question
 	 */
 	const displayQuestions = qArray => (
@@ -47,7 +47,7 @@ function Home(props) {
 					<div className="card-header">{`${question.submitter} asks:`}</div>
 
 					<div className='card-content'>
-						<img src={userDB.get(question.submitter).avatar} alt="user avatar" />
+						<img src={userDB.find(u => u.name === question.submitter).avatar} alt="user avatar" />
 
 						<div className="would-you-rather">
 							<h5>Would you rather</h5>
@@ -106,11 +106,11 @@ function Home(props) {
 
 /**
  * @param {{
- * 	questions: import('../app/Question').default[],
+ * 	questions: import('../app/store').Question[],
  * 	activeUser: string,
- * 	userDB: Map<string, import('../app/User').default>
+ * 	userDB: import('../app/store').User[]
  * }} state
  */
-const mapStateToProps = state => ({ user: state.userDB.get(state.activeUser), questions: state.questions, userDB: state.userDB });
+const mapStateToProps = state => ({ user: state.userDB.find(u => u.name === state.activeUser), questions: state.questions, userDB: state.userDB });
 
 export default connect(mapStateToProps)(Home);

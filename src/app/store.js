@@ -3,9 +3,6 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
-import User from './User';
-import Question from './Question';
-
 // Action Types
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
@@ -43,6 +40,48 @@ const loginReducer = (state = '', action) => {
  */
 
 /**
+ * @typedef User
+ * @property {string} name
+ * @property {string} avatar
+ * @property { {questionID: number, answer: number}[] } questionsAnswered
+ * @property {number[]} questionsAsked
+ */
+
+/**
+ * @typedef Question
+ * @property {number} id
+ * @property {string} optionOne
+ * @property {string} optionTwo
+ * @property {string} submitter
+ * @property {number} choseOne
+ * @property {number} choseTwo
+ */
+
+/**
+ * @type {User[]}
+ */
+let userDB = [
+	{
+		name: 'Krushil Naik',
+		avatar: 'https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png',
+		questionsAnswered: [],
+		questionsAsked: []
+	},
+	{
+		name: 'Tyler McGinnis',
+			avatar: '/assets/images/react-redux.jpeg',
+			questionsAnswered: [],
+			questionsAsked: []
+	},
+	{
+		name: 'Waldo',
+		avatar: 'https://i.pinimg.com/236x/ea/d6/be/ead6bef635795a9dc0a511e815c778c3--wheres-wally-kid-books.jpg',
+		questionsAnswered: [],
+		questionsAsked: []
+	}
+];
+
+/**
  * @param {Question[]} state
  * @param {{ type: string, question: QuestionModel, answer: AnswerModel }} action
  */
@@ -50,7 +89,7 @@ const questionReducer = (state = [], action) => {
 	switch (action.type) {
 		case ADD_QUESTION:
 			const { optionOne, optionTwo, asker } = action.question;
-			return state.concat([new Question(state.length, optionOne, optionTwo, asker)]);
+			return state.concat([{id: state.length, optionOne, optionTwo, submitter: asker, choseOne: 0, choseTwo: 0}]);
 		case ANSWER_QUESTION:
 			const { questionID, answer } = action.answer;
 			answer === 1 ? state[questionID].choseOne++ : state[questionID].choseTwo++;
@@ -61,29 +100,29 @@ const questionReducer = (state = [], action) => {
 };
 
 /**
- * @param {Map<string, User>} state key-value pairs of user's name to their object representation
+ * @param {User[]} state key-value pairs of user's name to their object representation
  * @param {{type: string, question: QuestionModel, answer: AnswerModel}} action
  */
-const userReducer = (state = new Map(), action) => {
-	// let newState = new Map(state.entries());
+const userReducer = (state = userDB, action) => {
+	let newState = Array.from(state);
 	switch (action.type) {
 		case ADD_QUESTION:
-			state.forEach(
+			newState.forEach(
 				user => {
 					if (user.name === action.question.asker) {
 						user.questionsAsked.push(action.question.questionID);
 					}
 				}
 			);
-			return state;
+			return newState;
 		case ANSWER_QUESTION:
-			state.forEach(user => {
+			newState.forEach(user => {
 				if (user.name === action.answer.submitter) {
 					const { questionID, answer } = action.answer;
 					user.questionsAnswered.push({ questionID, answer });
 				}
 			});
-			return state;
+			return newState;
 		default:
 			return state;
 	}
@@ -101,28 +140,7 @@ export const store = configureStore({
 	reducer: persistReducer(persistConfig, rootReducer),
 	middleware: [thunk],
 	preloadedState: {
-		userDB: new Map([
-			[
-				'Krushil Naik',
-				new User(
-					'Krushil Naik',
-					'https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png'
-				)
-			],
-			[
-				'Tyler McGinnis',
-				new User(
-					'Tyler McGinnis'
-				)
-			],
-			[
-				'Guest',
-				new User(
-					'Guest',
-					'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'
-				)
-			]
-		])
+		userDB
 	}
 });
 

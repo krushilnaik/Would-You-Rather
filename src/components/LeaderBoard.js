@@ -2,14 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './scss/LeaderBoard.scss';
 
-// <i className="fas fa-trophy"></i>
-
 /**
- * @param {{userDB: Map<String, import('../app/User').default>}} props 
+ * @param {{userDB: import('../app/store').User[]}} props 
  */
 function LeaderBoard(props) {
 	const { userDB } = props;
-	const users = Array.from(userDB.values()).sort(
+	const users = userDB.sort(
 		(a, b) => {
 			const scoreA = a.questionsAnswered.length + a.questionsAsked.length;
 			const scoreB = b.questionsAnswered.length + b.questionsAsked.length;
@@ -64,7 +62,7 @@ function LeaderBoard(props) {
 }
 
 /**
- * @param {{userDB: Map<string, import('../app/User').default>}} state 
+ * @param {{userDB: import('../app/store').User[]}} state 
  */
 const mapStateToProps = state => ({ userDB: state.userDB });
 
