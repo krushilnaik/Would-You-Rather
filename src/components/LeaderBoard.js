@@ -28,7 +28,7 @@ function LeaderBoard(props) {
 			{
 				users.slice(0, 3).map(
 					(user, i) => (
-						<div className="card">
+						<div key={user.name} className="card">
 							<div className='images'>
 								<div className='cutout'></div>
 								<i className={`fas fa-trophy ${places[i]}`} />
