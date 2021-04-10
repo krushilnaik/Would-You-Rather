@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+#blocker {
+	background-color: #01b3a4;
+	height: 500px;
+	width: 45%;
+	margin: auto;
+	margin-top: 5%;
+	border-radius: 15px;
+	box-shadow: 1px 1px 5px #02a194;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	img {
+		height: 80%;
+		width: auto;
+		object-fit: contain;
+	}
+
+	p {
+		text-align: center;
+		font-weight: bold;
+		font-size: x-large;
+		font-family: 'Source Sans Pro', sans-serif;
+		color: honeydew;
+	}
+}

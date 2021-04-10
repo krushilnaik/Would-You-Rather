@@ -1,5 +1,4 @@
 {
-	"activeUser": "Krushil Naik",
 	"questions": [
 		{
 			"id": 0,
@@ -80,9 +79,5 @@
 			],
 			"questionsAsked": [3]
 		}
-	],
-	"_persist": {
-		"version": -1,
-		"rehydrated": true
-	}
+	]
 }

@@ -1,8 +1,16 @@
 import React from 'react';
 
-function MustSignIn() {
+import './scss/MustSignIn.scss';
+
+/**
+ * @param {{message: string}} props
+ */
+function MustSignIn(props) {
 	return (
-		<div>You gotta sign in first!</div>
+		<div id="blocker">
+			<img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/52374/person-gesturing-no-emoji-clipart-md.png" alt="man gesturing no" />
+			<p>You gotta sign in to {props.message}!</p>
+		</div>
 	);
 }
 

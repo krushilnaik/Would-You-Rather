@@ -28,7 +28,6 @@ function LeaderBoard(props) {
 					<div className='images'>
 						<div className='cutout'></div>
 						<i className={`fas fa-trophy ${places[i]}`} />
-						{/* <i className="background fas fa-caret-up"></i> */}
 						<img src={user.avatar} alt='user avatar' />
 					</div>
 					<div className='info'>
