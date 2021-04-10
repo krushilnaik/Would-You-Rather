@@ -52,7 +52,7 @@ function App(props) {
 			<Switch>
 				<Route exact path='/' render={() => (user ? <Home /> : <SignInForm />)} />
 				<Route exact path='/add' render={() => (user ? <NewQuestion /> : <MustSignIn message='ask a question'/>)} />
-				<Route exact path='/leaderboard' render={() => (user ? <LeaderBoard /> : <MustSignIn  message='flex your inquire skills'/>)} />
+				<Route exact path='/leaderboard' render={() => (user ? <LeaderBoard /> : <MustSignIn  message='flex your inquiring skills'/>)} />
 				<Route path='/questions/:id' children={user ? <Question /> : <MustSignIn  message='answer questions' />} />
 				<Route path='*' render={() => <PageNotFound />} />
 			</Switch>
