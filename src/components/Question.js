@@ -4,16 +4,16 @@ import { useParams } from 'react-router';
 
 import './scss/Question.scss';
 
-import { store, answerQuestion } from '../app/store';
+import { answerQuestion } from '../app/store';
 
 /**
- * @param { {user: string, userDB: import('../app/store').User[]} } props
+ * @param { {user: string, userDB: import('../app/store').User[], questions: import('../app/store').Question[]} } props
  */
 function Question(props) {
 	// @ts-ignore
 	const { question_id } = useParams();
 	const { userDB } = props;
-	const question = store.getState().questions[question_id];
+	const question = props.questions[question_id];
 	const [selection, setSelection] = useState(0);
 	const [view, setView] = useState(
 		userDB
@@ -131,9 +131,14 @@ function Question(props) {
 /**
  * @param { {
  * 	activeUser: string,
- * 	userDB: import('../app/store').User[]
+ * 	userDB: import('../app/store').User[],
+ * 	questions: import('../app/store').Question[]
  * } } state
  */
-const mapStateToProps = state => ({ user: state.activeUser, userDB: state.userDB });
+const mapStateToProps = state => ({
+	user: state.activeUser,
+	userDB: state.userDB,
+	questions: state.questions
+});
 
 export default connect(mapStateToProps)(Question);
