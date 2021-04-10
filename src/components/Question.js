@@ -11,15 +11,15 @@ import { store, answerQuestion } from '../app/store';
  */
 function Question(props) {
 	// @ts-ignore
-	const { id } = useParams();
+	const { question_id } = useParams();
 	const { userDB } = props;
-	const question = store.getState().questions[id];
+	const question = store.getState().questions[question_id];
 	const [selection, setSelection] = useState(0);
 	const [view, setView] = useState(
 		userDB
 			.find(u => u.name === props.user)
 			.questionsAnswered.map(q => q.questionID)
-			.includes(Number(id))
+			.includes(Number(question_id))
 			? 'answered'
 			: 'unanswered'
 	);
@@ -32,7 +32,7 @@ function Question(props) {
 	const handleSubmit = event => {
 		event.preventDefault();
 
-		answerQuestion(props.user, Number(id), selection);
+		answerQuestion(props.user, Number(question_id), selection);
 		setView('answered');
 	};
 
@@ -79,7 +79,7 @@ function Question(props) {
 	const answerView = () => {
 		const userChoice = userDB
 			.find(u => u.name === props.user)
-			.questionsAnswered.filter(question => question.questionID === Number(id))[0].answer;
+			.questionsAnswered.filter(question => question.questionID === Number(question_id))[0].answer;
 
 		const { choseOne, choseTwo } = question;
 
