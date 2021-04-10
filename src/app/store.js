@@ -2,6 +2,7 @@ import { bindActionCreators, combineReducers, configureStore } from '@reduxjs/to
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
+import preloadedState from './sample_state';
 
 // Action Types
 const LOG_IN = 'LOG_IN';
@@ -60,7 +61,7 @@ const loginReducer = (state = '', action) => {
 /**
  * @type {User[]}
  */
-let userDB = [
+let fallbackDB = [
 	{
 		name: 'Krushil Naik',
 		avatar:
@@ -108,7 +109,7 @@ const questionReducer = (state = [], action) => {
  * @param {User[]} state key-value pairs of user's name to their object representation
  * @param {{type: string, question: QuestionModel, answer: AnswerModel}} action
  */
-const userReducer = (state = userDB, action) => {
+const userReducer = (state = fallbackDB, action) => {
 	let newState = Array.from(state);
 	switch (action.type) {
 		case ADD_QUESTION:
@@ -142,9 +143,7 @@ const persistConfig = { key: 'root', storage };
 export const store = configureStore({
 	reducer: persistReducer(persistConfig, rootReducer),
 	middleware: [thunk],
-	preloadedState: {
-		userDB
-	}
+	preloadedState: preloadedState
 });
 
 export const { logIn, logOut, answerQuestion, addQuestion } = bindActionCreators(

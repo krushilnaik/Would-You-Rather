@@ -1,4 +1,4 @@
-{
+const preloadedState = {
 	"questions": [
 		{
 			"id": 0,
@@ -80,4 +80,6 @@
 			"questionsAsked": [3]
 		}
 	]
-}
+};
+
+export default preloadedState;
