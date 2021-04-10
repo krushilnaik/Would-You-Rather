@@ -14,16 +14,12 @@ function Home(props) {
 	const { questions, user, userDB } = props;
 	let history = useHistory();
 
-	const answeredQuestions = questions.filter(
-		question => user.questionsAnswered.map(
-			answers => answers.questionID
-		).includes(question.id)
+	const answeredQuestions = questions.filter(question =>
+		user.questionsAnswered.map(answers => answers.questionID).includes(question.id)
 	);
 
 	const unansweredQuestions = questions.filter(
-		question => !answeredQuestions.map(
-			answers => answers.id
-		).includes(question.id)
+		question => !answeredQuestions.map(answers => answers.id).includes(question.id)
 	);
 
 	/**
@@ -33,32 +29,36 @@ function Home(props) {
 	const handleClick = (event, questionID) => {
 		event.preventDefault();
 		history.push(`/question/${questionID}`);
-	}
+	};
 
 	/**
 	 * generate markup for questions in an array
 	 * @param {import('../app/store').Question[]} qArray
 	 * @returns array of divs representing an overview of each question
 	 */
-	const displayQuestions = qArray => (
-		qArray.map(
-			question => (
-				<div key={question.id} className="question card bg-light">
-					<div className="card-header">{`${question.submitter} asks:`}</div>
+	const displayQuestions = qArray =>
+		qArray.map(question => (
+			<div key={question.id} className='question card bg-light'>
+				<div className='card-header'>{`${question.submitter} asks:`}</div>
 
-					<div className='card-content'>
-						<img src={userDB.find(u => u.name === question.submitter).avatar} alt="user avatar" />
+				<div className='card-content'>
+					<img src={userDB.find(u => u.name === question.submitter).avatar} alt='user avatar' />
 
-						<div className="would-you-rather">
-							<h5>Would you rather</h5>
-							<p>...{question.optionOne}...</p>
-							<button onClick={event => {handleClick(event, question.id);}} className='btn btn-outline-success'>View Poll</button>
-						</div>
+					<div className='would-you-rather'>
+						<h5>Would you rather</h5>
+						<p>...{question.optionOne}...</p>
+						<button
+							onClick={event => {
+								handleClick(event, question.id);
+							}}
+							className='btn btn-outline-success'
+						>
+							View Poll
+						</button>
 					</div>
 				</div>
-			)
-		)
-	);
+			</div>
+		));
 
 	return (
 		<div className='dashboard card'>
@@ -93,7 +93,12 @@ function Home(props) {
 				</li>
 			</ul>
 			<div className='tab-content' id='questions'>
-				<div className='tab-pane fade show active' id='unanswered' role='tabpanel' aria-labelledby='unanswered-tab'>
+				<div
+					className='tab-pane fade show active'
+					id='unanswered'
+					role='tabpanel'
+					aria-labelledby='unanswered-tab'
+				>
 					{displayQuestions(unansweredQuestions)}
 				</div>
 				<div className='tab-pane fade' id='answered' role='tabpanel' aria-labelledby='answered-tab'>
@@ -111,6 +116,10 @@ function Home(props) {
  * 	userDB: import('../app/store').User[]
  * }} state
  */
-const mapStateToProps = state => ({ user: state.userDB.find(u => u.name === state.activeUser), questions: state.questions, userDB: state.userDB });
+const mapStateToProps = state => ({
+	user: state.userDB.find(u => u.name === state.activeUser),
+	questions: state.questions,
+	userDB: state.userDB
+});
 
 export default connect(mapStateToProps)(Home);

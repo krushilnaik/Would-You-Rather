@@ -63,19 +63,21 @@ const loginReducer = (state = '', action) => {
 let userDB = [
 	{
 		name: 'Krushil Naik',
-		avatar: 'https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png',
+		avatar:
+			'https://cdn2.iconfinder.com/data/icons/super-hero/154/ironman-head-comics-avatar-iron-man-512.png',
 		questionsAnswered: [],
 		questionsAsked: []
 	},
 	{
 		name: 'Tyler McGinnis',
-			avatar: 'assets/images/react-redux.jpeg',
-			questionsAnswered: [],
-			questionsAsked: []
+		avatar: 'assets/images/react-redux.jpeg',
+		questionsAnswered: [],
+		questionsAsked: []
 	},
 	{
 		name: 'Waldo',
-		avatar: 'https://i.pinimg.com/236x/ea/d6/be/ead6bef635795a9dc0a511e815c778c3--wheres-wally-kid-books.jpg',
+		avatar:
+			'https://i.pinimg.com/236x/ea/d6/be/ead6bef635795a9dc0a511e815c778c3--wheres-wally-kid-books.jpg',
 		questionsAnswered: [],
 		questionsAsked: []
 	}
@@ -89,7 +91,9 @@ const questionReducer = (state = [], action) => {
 	switch (action.type) {
 		case ADD_QUESTION:
 			const { optionOne, optionTwo, asker } = action.question;
-			return state.concat([{id: state.length, optionOne, optionTwo, submitter: asker, choseOne: 0, choseTwo: 0}]);
+			return state.concat([
+				{ id: state.length, optionOne, optionTwo, submitter: asker, choseOne: 0, choseTwo: 0 }
+			]);
 		case ANSWER_QUESTION:
 			const { questionID, answer } = action.answer;
 			let newState = Array.from(state);
@@ -108,13 +112,11 @@ const userReducer = (state = userDB, action) => {
 	let newState = Array.from(state);
 	switch (action.type) {
 		case ADD_QUESTION:
-			newState.forEach(
-				user => {
-					if (user.name === action.question.asker) {
-						user.questionsAsked.push(action.question.questionID);
-					}
+			newState.forEach(user => {
+				if (user.name === action.question.asker) {
+					user.questionsAsked.push(action.question.questionID);
 				}
-			);
+			});
 			return newState;
 		case ANSWER_QUESTION:
 			newState.forEach(user => {
@@ -149,7 +151,10 @@ export const { logIn, logOut, answerQuestion, addQuestion } = bindActionCreators
 	{
 		logIn: activeUser => ({ type: LOG_IN, activeUser }),
 		logOut: () => ({ type: LOG_OUT }),
-		answerQuestion: (submitter, questionID, answer) => ({ type: ANSWER_QUESTION, answer: { submitter, questionID, answer } }),
+		answerQuestion: (submitter, questionID, answer) => ({
+			type: ANSWER_QUESTION,
+			answer: { submitter, questionID, answer }
+		}),
 		addQuestion: (optionOne, optionTwo, questionID, asker) => ({
 			type: ADD_QUESTION,
 			question: { optionOne, optionTwo, questionID, asker }

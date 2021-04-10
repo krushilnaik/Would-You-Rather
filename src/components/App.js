@@ -40,13 +40,13 @@ function App(props) {
 					</li>
 				</ul>
 
-				{
-					user && <div id='user-info'>
+				{user && (
+					<div id='user-info'>
 						<span>Hello, {user}</span>
 						<img src={userDB.find(u => u.name === user).avatar} alt='user avatar' />
 						<button onClick={handleClick}>Logout</button>
 					</div>
-				}
+				)}
 			</nav>
 
 			<Switch>

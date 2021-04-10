@@ -94,7 +94,7 @@
 					position: relative;
 
 					&::after {
-						content: "Your vote";
+						content: 'Your vote';
 						position: absolute;
 						width: min-content;
 						line-height: 1em;
@@ -104,7 +104,7 @@
 						color: honeydew;
 					}
 					&::before {
-						content: "";
+						content: '';
 						height: 3em;
 						width: 3em;
 						background-color: goldenrod;

@@ -16,7 +16,10 @@ function Question(props) {
 	const question = store.getState().questions[id];
 	const [selection, setSelection] = useState(0);
 	const [view, setView] = useState(
-		userDB.find(u => u.name === props.user).questionsAnswered.map(q => q.questionID).includes(Number(id))
+		userDB
+			.find(u => u.name === props.user)
+			.questionsAnswered.map(q => q.questionID)
+			.includes(Number(id))
 			? 'answered'
 			: 'unanswered'
 	);
@@ -35,68 +38,94 @@ function Question(props) {
 
 	const askView = () => (
 		<React.Fragment>
-			<div className="card-header">{`${question.submitter} asks:`}</div>
+			<div className='card-header'>{`${question.submitter} asks:`}</div>
 
 			<div className='card-content'>
-				<img src={avatarURL.startsWith('http') ? avatarURL : `/${avatarURL}`} alt="user avatar" />
-				<div className="would-you-rather asking">
+				<img src={avatarURL.startsWith('http') ? avatarURL : `/${avatarURL}`} alt='user avatar' />
+				<div className='would-you-rather asking'>
 					<h5>Would You Rather ...</h5>
 					<div>
-						<input defaultChecked={selection === 1} onClick={() => {setSelection(1);}} type="radio" id='option-one' value={question.optionOne}/>
-						<label htmlFor="option-one">{question.optionOne}</label>
+						<input
+							defaultChecked={selection === 1}
+							onClick={() => {
+								setSelection(1);
+							}}
+							type='radio'
+							id='option-one'
+							value={question.optionOne}
+						/>
+						<label htmlFor='option-one'>{question.optionOne}</label>
 					</div>
 					<div>
-						<input defaultChecked={selection === 2} onClick={() => {setSelection(2);}} type="radio" id='option-two' value={question.optionTwo}/>
-						<label htmlFor="option-two">{question.optionTwo}</label>
+						<input
+							defaultChecked={selection === 2}
+							onClick={() => {
+								setSelection(2);
+							}}
+							type='radio'
+							id='option-two'
+							value={question.optionTwo}
+						/>
+						<label htmlFor='option-two'>{question.optionTwo}</label>
 					</div>
-					<button onClick={handleSubmit} className='btn btn-success'>Submit</button>
+					<button onClick={handleSubmit} className='btn btn-success'>
+						Submit
+					</button>
 				</div>
 			</div>
 		</React.Fragment>
 	);
 
 	const answerView = () => {
-		const userChoice = userDB.find(u => u.name === props.user).questionsAnswered.filter(
-			question => question.questionID === Number(id)
-		)[0].answer;
+		const userChoice = userDB
+			.find(u => u.name === props.user)
+			.questionsAnswered.filter(question => question.questionID === Number(id))[0].answer;
 
 		const { choseOne, choseTwo } = question;
 
-		return <React.Fragment>
-			<div className="card-header">{`Asked by ${question.submitter}`}</div>
-			<div className='card-content'>
-				<img src={avatarURL.startsWith('http') ? avatarURL : `/${avatarURL}`} alt="user avatar" />
+		return (
+			<React.Fragment>
+				<div className='card-header'>{`Asked by ${question.submitter}`}</div>
+				<div className='card-content'>
+					<img src={avatarURL.startsWith('http') ? avatarURL : `/${avatarURL}`} alt='user avatar' />
 
-				<div className="would-you-rather answered">
-					<h5>Results:</h5>
-					<div className={`card ${userChoice === 1 ? 'chosen' : ''}`}>
-						<p>Would you rather {question.optionOne}?</p>
+					<div className='would-you-rather answered'>
+						<h5>Results:</h5>
+						<div className={`card ${userChoice === 1 ? 'chosen' : ''}`}>
+							<p>Would you rather {question.optionOne}?</p>
 
-						<div className="bar">
-							{choseOne > 0 && <div className="percentage" style={{ width: `${choseOne / (choseOne + choseTwo) * 100}%` }}>{`${choseOne / (choseOne + choseTwo) * 100}%`}</div>}
+							<div className='bar'>
+								{choseOne > 0 && (
+									<div
+										className='percentage'
+										style={{ width: `${(choseOne / (choseOne + choseTwo)) * 100}%` }}
+									>{`${(choseOne / (choseOne + choseTwo)) * 100}%`}</div>
+								)}
+							</div>
+
+							<p>{`${choseOne} out of ${choseOne + choseTwo} votes`}</p>
 						</div>
+						<div className={`card ${userChoice === 2 ? 'chosen' : ''}`}>
+							<p>Would you rather {question.optionTwo}?</p>
 
-						<p>{`${choseOne} out of ${choseOne + choseTwo} votes`}</p>
-					</div>
-					<div className={`card ${userChoice === 2 ? 'chosen' : ''}`}>
-						<p>Would you rather {question.optionTwo}?</p>
+							<div className='bar'>
+								{choseTwo > 0 && (
+									<div
+										className='percentage'
+										style={{ width: `${(choseTwo / (choseOne + choseTwo)) * 100}%` }}
+									>{`${(choseTwo / (choseOne + choseTwo)) * 100}%`}</div>
+								)}
+							</div>
 
-						<div className="bar">
-							{choseTwo > 0 && <div className="percentage" style={{ width: `${choseTwo / (choseOne + choseTwo) * 100}%` }}>{`${choseTwo / (choseOne + choseTwo) * 100}%`}</div>}
+							<p className='statement'>{`${choseTwo} out of ${choseOne + choseTwo} votes`}</p>
 						</div>
-
-						<p className='statement'>{`${choseTwo} out of ${choseOne + choseTwo} votes`}</p>
 					</div>
 				</div>
-			</div>
-		</React.Fragment>
+			</React.Fragment>
+		);
 	};
 
-	return (
-		<div className={`question card ${view}`}>
-			{ view === 'answered' ? answerView() : askView() }
-		</div>
-	);
+	return <div className={`question card ${view}`}>{view === 'answered' ? answerView() : askView()}</div>;
 }
 
 /**

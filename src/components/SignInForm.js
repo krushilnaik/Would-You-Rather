@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
 /**
- * @param {{userDB: import('../app/store').User[]}} props 
+ * @param {{userDB: import('../app/store').User[]}} props
  */
 function SignInForm(props) {
 	let [user, setUser] = useState('');
@@ -71,16 +71,12 @@ function SignInForm(props) {
 						{user || 'Select user:'}
 					</button>
 					<div className='dropdown-menu' aria-labelledby='user-select'>
-						{
-							Array.from(userDB.values()).map(
-								user => (
-									<div key={user.name} className='dropdown-item' onClick={handleSelect}>
-										<img className='avatar' src={user.avatar} alt='user avatar' />
-										<span className='username'>{user.name}</span>
-									</div>
-								)
-							)
-						}
+						{Array.from(userDB.values()).map(user => (
+							<div key={user.name} className='dropdown-item' onClick={handleSelect}>
+								<img className='avatar' src={user.avatar} alt='user avatar' />
+								<span className='username'>{user.name}</span>
+							</div>
+						))}
 					</div>
 				</div>
 
@@ -93,7 +89,7 @@ function SignInForm(props) {
 }
 
 /**
- * @param {{userDB: import('../app/store').User[]}} state 
+ * @param {{userDB: import('../app/store').User[]}} state
  */
 const mapStateToProps = state => ({ userDB: state.userDB });
 
