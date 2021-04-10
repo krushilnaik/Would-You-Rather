@@ -28,7 +28,7 @@ function Home(props) {
 	 */
 	const handleClick = (event, questionID) => {
 		event.preventDefault();
-		history.push(`/question/${questionID}`);
+		history.push(`/questions/${questionID}`);
 	};
 
 	/**

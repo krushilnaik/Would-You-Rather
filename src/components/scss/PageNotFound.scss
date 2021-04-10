@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+#not-found {
+	background-color: #01b3a4;
+	width: 40%;
+	margin: 5% auto;
+	border-radius: 15px;
+	box-shadow: 1px 1px 5px #02a194;
+	display: grid;
+	grid-template-rows: 5fr 2fr;
+	justify-content: center;
+	align-items: center;
+
+	#not-found-row {
+		display: grid;
+		grid-template-columns: 1fr 1.5fr 1fr;
+		align-items: center;
+		width: 100%;
+
+		span {
+			color: honeydew;
+			font-size: 320px;
+			line-height: 1em;
+		}
+
+		i {
+			margin: 0% 3%;
+			text-align: center;
+			color: #db4462;
+			font-size: 250px;
+			object-fit: contain;
+		}
+	}
+
+	p {
+		text-align: center;
+		font-weight: bold;
+		font-size: x-large;
+		font-family: 'Source Sans Pro', sans-serif;
+		color: honeydew;
+	}
+}

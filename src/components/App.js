@@ -32,11 +32,11 @@ function App(props) {
 					<li className={location.pathname === '/' ? `current` : ''}>
 						<Link to='/'>Home</Link>
 					</li>
-					<li className={location.pathname === '/new_question' ? `current` : ''}>
-						<Link to='/new_question'>New Question</Link>
+					<li className={location.pathname === '/add' ? `current` : ''}>
+						<Link to='/add'>New Question</Link>
 					</li>
-					<li className={location.pathname === '/leader_board' ? `current` : ''}>
-						<Link to='/leader_board'>Leader Board</Link>
+					<li className={location.pathname === '/leaderboard' ? `current` : ''}>
+						<Link to='/leaderboard'>Leader Board</Link>
 					</li>
 				</ul>
 
@@ -51,9 +51,9 @@ function App(props) {
 
 			<Switch>
 				<Route exact path='/' render={() => (user ? <Home /> : <SignInForm />)} />
-				<Route exact path='/new_question' render={() => (user ? <NewQuestion /> : <MustSignIn message='ask a question'/>)} />
-				<Route exact path='/leader_board' render={() => (user ? <LeaderBoard /> : <MustSignIn  message='flex your inquire skills'/>)} />
-				<Route path='/question/:id' children={user ? <Question /> : <MustSignIn  message='answer questions' />} />
+				<Route exact path='/add' render={() => (user ? <NewQuestion /> : <MustSignIn message='ask a question'/>)} />
+				<Route exact path='/leaderboard' render={() => (user ? <LeaderBoard /> : <MustSignIn  message='flex your inquire skills'/>)} />
+				<Route path='/questions/:id' children={user ? <Question /> : <MustSignIn  message='answer questions' />} />
 				<Route path='*' render={() => <PageNotFound />} />
 			</Switch>
 		</div>
