@@ -16,11 +16,11 @@ function Home(props) {
 
 	const answeredQuestions = questions.filter(question =>
 		user.questionsAnswered.map(answers => answers.questionID).includes(question.id)
-	);
+	).reverse();
 
 	const unansweredQuestions = questions.filter(
 		question => !answeredQuestions.map(answers => answers.id).includes(question.id)
-	);
+	).reverse();
 
 	/**
 	 * @param {React.MouseEvent<HTMLButtonElement>} event
