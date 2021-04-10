@@ -55,7 +55,7 @@ const preloadedState = {
 		},
 		{
 			"name": "Tyler McGinnis",
-			"avatar": "/assets/images/react-redux.jpeg",
+			"avatar": "assets/images/react-redux.jpeg",
 			"questionsAnswered": [
 				{
 					"questionID": 0,
