@@ -52,6 +52,7 @@ function Question(props) {
 							}}
 							type='radio'
 							id='option-one'
+							name='choice'
 							value={question.optionOne}
 						/>
 						<label htmlFor='option-one'>{question.optionOne}</label>
@@ -64,6 +65,7 @@ function Question(props) {
 							}}
 							type='radio'
 							id='option-two'
+							name='choice'
 							value={question.optionTwo}
 						/>
 						<label htmlFor='option-two'>{question.optionTwo}</label>
