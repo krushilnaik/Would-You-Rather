@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/388d8621-5533-481f-a11a-11c7da412119/deploy-status)](https://app.netlify.com/sites/would-you-redux/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7b92da4f-f6fe-42d2-a441-306988ef838b/deploy-status)](https://app.netlify.com/sites/would-you-redux/deploys)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
