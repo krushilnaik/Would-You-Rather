@@ -7,7 +7,6 @@
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.3.2",
 		"@testing-library/user-event": "^7.1.2",
-		"node-sass": "^5.0.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-redux": "^7.2.3",
@@ -15,7 +14,8 @@
 		"react-scripts": "4.0.3",
 		"redux": "^4.0.5",
 		"redux-persist": "^6.0.0",
-		"redux-thunk": "^2.3.0"
+		"redux-thunk": "^2.3.0",
+		"sass": "^1.49.10"
 	},
 	"scripts": {
 		"start": "react-scripts start",
